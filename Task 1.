@@ -1,0 +1,59 @@
+# Importing necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+import pandas as pd
+
+# Task 1: Dataset Exploration
+
+# Load the Iris dataset
+iris = load_iris()
+iris_df = pd.DataFrame(iris.data, columns=iris.feature_names)
+
+# Display the first five rows of the dataset
+print("First five rows of the Iris dataset:")
+print(iris_df.head())
+
+# Display the shape of the dataset
+print("\nShape of the Iris dataset:")
+print(iris_df.shape)
+
+# Display summary statistics for each feature
+print("\nSummary statistics of the Iris dataset:")
+print(iris_df.describe())
+
+# Task 2: Data Splitting
+
+# Split the dataset into training and testing sets (80-20 split)
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)
+
+# Print the number of samples in both the training and testing sets
+print("\nNumber of samples in the training set:", X_train.shape[0])
+print("Number of samples in the testing set:", X_test.shape[0])
+
+# Task 3: Linear Regression
+
+# Example dataset for Linear Regression (Assuming you have this dataset)
+# Creating a simple example dataset for demonstration purposes
+import numpy as np
+
+# Dummy data: YearsExperience and Salary
+years_experience = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).reshape(-1, 1)
+salary = np.array([30000, 35000, 40000, 45000, 50000, 60000, 65000, 70000, 75000, 80000])
+
+# Split the dataset into training and testing sets (80-20 split)
+X_train_lr, X_test_lr, y_train_lr, y_test_lr = train_test_split(years_experience, salary, test_size=0.2, random_state=42)
+
+# Create a Linear Regression model
+model = LinearRegression()
+
+# Fit the model to the training data
+model.fit(X_train_lr, y_train_lr)
+
+# Predict the salary on the test set
+y_pred = model.predict(X_test_lr)
+
+# Evaluate the model's performance using Mean Squared Error (MSE)
+mse = mean_squared_error(y_test_lr, y_pred)
+print("\nMean Squared Error (MSE) on the test set:", mse)
